@@ -135,7 +135,7 @@
             .top-box .sagn-ico {
                 width: 5.89rem;
                 height: auto;
-                margin-top: 2rem;
+                margin-top: 1rem;
             }
 
             .download-btn {
@@ -184,8 +184,11 @@
                 <!-- <p id='txt-title'>缘遇圈</p> -->
                 <img class="sagn-ico" src="http://img.xiaoquanapp.top/Fja9RXoZ-JKQADnJCo1NmJw9c2Jc" alt="">
             </div>
+            <div>
+              <div style="margin: .4rem auto; width: 70%; color: #ffffff; font-size:14px">本页面不支持微信/qq浏览器打开，请点击右上角使用浏览器打开</div>
+            </div>
             <div class="download-btn" id="downloadButton" style="visibility: visible;" onclick="download()">
-                <div class="download-btn-real">下载安装</div>
+                <div class="download-btn-real">复制链接</div>
             </div>
         </div>
 </div></body><script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -193,54 +196,27 @@
 <script src="https://res.sharetrace.com/sharetrace.min.js"></script>
 <script type="text/javascript">
   // var vConsole = new VConsole();
-
-  function isWeiXin() {
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.indexOf('micromessenger') !== -1) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  function judgeClient() {
-    client = '';
-    if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-      //判断iPhone|iPad|iPod|iOS
-      client = 'ios';
-    } else if (/(Android)/i.test(navigator.userAgent)) {
-      //判断Android
-      client = 'android';
-    } else {
-      client = 'pc';
-    }
-    return client;
-  }
-
-  //获取url中的参数
-  function getUrlParam(name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-    //构造一个含有目标参数的正则表达式对象
-    var r = window.location.search.substr(1).match(reg);
-    //匹配目标参数
-    if (r != null)
-      return unescape(r[2]);
-    return null;
-    //返回参数值
-  }
+  var downloadUrl = ''
   
   function download() {
-    console.log('请在浏览器中访问')
+    copyToClipboard()
+  }
+  function copyToClipboard() {
+      var textToCopy = document.getElementById("textToCopy");
+      var textarea = document.createElement("textarea");
+      textarea.value = downloadUrl;
+      document.body.appendChild(textarea);
+      textarea.select();
+      textarea.setSelectionRange(0, 99999); // 为了兼容移动设备
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      alert('复制成功');
   }
   (function($) {
-    // var currentUrl = window.location.href;
-    // if (currentUrl.startsWith('https://www')) {
-    //   var questionMarkIndex = currentUrl.indexOf('?');
-    //   var queryString = window.location.href.slice(questionMarkIndex+1);
-    //   var redirectUrl = `https://mmm${generateRandomNumber()}.xiaoquanapp.top/download.html?`+queryString;
-    //   window.location.href = redirectUrl;
-    //   return
-    // }
+    var currentUrl = window.location.href;
+    var questionMarkIndex = currentUrl.indexOf('=');
+    downloadUrl = window.location.href.slice(questionMarkIndex+1);
+    console.log(downloadUrl)
   }
   )(jQuery);
 </script>
