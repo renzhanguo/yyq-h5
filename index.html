@@ -195,10 +195,10 @@
           <img style="width: 100%; height: 100%;object-fit: cover;" src="./download-overlay.png" alt="">
         </div>
 </div></body><script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/vconsole@3.4.0/dist/vconsole.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vconsole@3.4.0/dist/vconsole.min.js"></script>
 <script src="https://res.sharetrace.com/sharetrace.min.js"></script>
 <script type="text/javascript">
-  // var vConsole = new VConsole();
+  var vConsole = new VConsole();
   var downloadUrl = ''
   
   function isWeiXin() {
@@ -231,7 +231,7 @@
     var questionMarkIndex = currentUrl.indexOf('=');
     if(questionMarkIndex && currentUrl.includes('www')) {
       downloadUrl = window.location.href.slice(questionMarkIndex+1);
-      if(!isWeiXin) {
+      if(!isWeiXin()) {
         window.location.href = downloadUrl
       }
     }
