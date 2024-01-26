@@ -187,18 +187,18 @@
             <div>
               <div style="margin: .4rem auto; width: 70%; color: #ffffff; font-size:14px">本页面不支持微信/qq浏览器打开，请复制链接或点击右上角使用浏览器打开</div>
             </div>
-            <div class="download-btn" id="downloadButton" style="visibility: visible;" onclick="copyToClipboard()">
-                <div class="download-btn-real">复制链接</div>
+            <div class="download-btn" id="downloadButton" style="visibility: visible;" onclick="download()">
+                <div class="download-btn-real">点击下载</div>
             </div>
         </div>
-        <div id="overlay" style="position: fixed;top:0;left:0;right:0;bottom:0;" onclick="closeOverlay()">
+        <div id="overlay" style="position: fixed;top:0;left:0;right:0;bottom:0; display: none;">
           <img style="width: 100%; height: 100%;object-fit: cover;" src="./download-overlay.png" alt="">
         </div>
 </div></body><script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vconsole@3.4.0/dist/vconsole.min.js"></script>
 <script src="https://res.sharetrace.com/sharetrace.min.js"></script>
 <script type="text/javascript">
-  var vConsole = new VConsole();
+  // var vConsole = new VConsole();
   var downloadUrl = ''
   
   function isWeiXin() {
@@ -209,8 +209,9 @@
       return false;
     }
   }
-  function closeOverlay() {
-    document.getElementById('overlay').style.display = 'none'
+
+  function download() {
+    document.getElementById('overlay').style.display = 'block'
   }
   function copyToClipboard() {
     if(!downloadUrl) {
