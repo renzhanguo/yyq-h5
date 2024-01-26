@@ -205,20 +205,20 @@
     if(!downloadUrl) {
       return
     }
-      var textToCopy = document.getElementById("textToCopy");
-      var textarea = document.createElement("textarea");
-      textarea.value = downloadUrl;
-      document.body.appendChild(textarea);
-      textarea.select();
-      textarea.setSelectionRange(0, 99999); // 为了兼容移动设备
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-      alert('复制成功');
+    var textToCopy = document.getElementById("textToCopy");
+    var textarea = document.createElement("textarea");
+    textarea.value = downloadUrl;
+    document.body.appendChild(textarea);
+    textarea.select();
+    textarea.setSelectionRange(0, 99999); // 为了兼容移动设备
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    alert('复制成功');
   }
   (function($) {
     var currentUrl = window.location.href;
     var questionMarkIndex = currentUrl.indexOf('=');
-    if(questionMarkIndex) {
+    if(questionMarkIndex && currentUrl.includes('www')) {
       downloadUrl = window.location.href.slice(questionMarkIndex+1);
       console.log(downloadUrl, "url")
     }
